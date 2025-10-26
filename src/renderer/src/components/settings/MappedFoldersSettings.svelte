@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { WsbConfiguration } from '@jsr/masinc__wsb'
   import { CircleQuestionMark } from 'lucide-svelte'
+  import PathAutocomplete from '../PathAutocomplete.svelte'
 
   interface Props {
     config: WsbConfiguration
@@ -85,12 +86,11 @@
                 </span>
               </label>
               <div class="flex gap-2">
-                <input
+                <PathAutocomplete
                   id="host-folder-{index}"
-                  type="text"
-                  class="input input-sm input-bordered flex-1 placeholder:opacity-50"
                   bind:value={folder.HostFolder}
-                  placeholder="Select folder..."
+                  placeholder="Type or select folder..."
+                  currentFilePath={currentFilePath}
                 />
                 <button class="btn btn-sm btn-outline" onclick={() => selectHostFolder(index)}>
                   Browse

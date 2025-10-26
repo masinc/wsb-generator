@@ -10,6 +10,7 @@ interface WsbApi {
   onMenuSaveAs: (callback: () => void) => void
   setTitle: (title: string) => void
   selectFolder: (defaultPath?: string) => Promise<string | null>
+  searchDirectories: (inputPath: string, currentFilePath?: string) => Promise<string[]>
 }
 
 declare global {
