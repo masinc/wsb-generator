@@ -93,7 +93,7 @@
         <label class="label py-1" for="printer-redirection-select">
           <span class="label-text text-sm flex items-center gap-1">
             Printer
-            <span class="tooltip" data-tip="Share host printers with sandbox.&#10;Default: Disable">
+            <span class="tooltip" data-tip="Share host printers with sandbox.Default: Disable">
               <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>
@@ -117,7 +117,7 @@
             Clipboard
             <span
               class="tooltip"
-              data-tip="Share clipboard between host and sandbox.&#10;Default: Enable"
+              data-tip="Share clipboard between host and sandbox.Default: Enable"
             >
               <CircleQuestionMark size={16} class="opacity-60" />
             </span>
@@ -142,7 +142,7 @@
             Protected Client
             <span
               class="tooltip"
-              data-tip="Runs sandbox inside an AppContainer Isolation execution environment for enhanced security.&#10;Default: Disable"
+              data-tip="Runs sandbox inside an AppContainer Isolation execution environment for enhanced security.Default: Disable"
             >
               <CircleQuestionMark size={16} class="opacity-60" />
             </span>

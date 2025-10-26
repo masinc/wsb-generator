@@ -41,7 +41,7 @@
         <label class="label py-1" for="vgpu-select">
           <span class="label-text text-sm flex items-center gap-1">
             VGpu
-            <span class="tooltip" data-tip="GPU virtualization.;Default: Enable">
+            <span class="tooltip" data-tip="GPU virtualization.Default: Enable">
               <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>
@@ -61,7 +61,7 @@
         <label class="label py-1" for="networking-select">
           <span class="label-text text-sm flex items-center gap-1">
             Networking
-            <span class="tooltip" data-tip="Network access.;Default: Enable">
+            <span class="tooltip" data-tip="Network access.Default: Enable">
               <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>
@@ -83,7 +83,7 @@
             Memory (MB)
             <span
               class="tooltip"
-              data-tip="Memory allocation in megabytes.;Default: 4096 MB (minimum: 2048 MB)"
+              data-tip="Memory allocation in megabytes.Default: 4096 MB (minimum: 2048 MB)"
             >
               <CircleQuestionMark size={16} class="opacity-60" />
             </span>
