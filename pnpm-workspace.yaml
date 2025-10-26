@@ -1,0 +1,2 @@
+minimumReleaseAgeExclude:
+  - '@jsr/masinc__wsb'
