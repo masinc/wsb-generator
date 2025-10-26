@@ -62,6 +62,12 @@
         ? [config.MappedFolders.MappedFolder]
         : []
   )
+
+  function getSelectClass(value: string | undefined): string {
+    if (value === 'Enable') return 'select-success'
+    if (value === 'Disable') return 'select-error'
+    return ''
+  }
 </script>
 
 <div class="space-y-3">
@@ -82,7 +88,7 @@
           </label>
           <select
             id="vgpu-select"
-            class="select select-sm select-bordered"
+            class="select select-sm select-bordered {getSelectClass(config.VGpu)}"
             bind:value={config.VGpu}
           >
             <option value="Default">Default</option>
@@ -102,7 +108,7 @@
           </label>
           <select
             id="networking-select"
-            class="select select-sm select-bordered"
+            class="select select-sm select-bordered {getSelectClass(config.Networking)}"
             bind:value={config.Networking}
           >
             <option value="Default">Default</option>
@@ -175,7 +181,7 @@
           </label>
           <select
             id="audio-input-select"
-            class="select select-sm select-bordered"
+            class="select select-sm select-bordered {getSelectClass(config.AudioInput)}"
             bind:value={config.AudioInput}
           >
             <option value="Default">Default</option>
@@ -195,7 +201,7 @@
           </label>
           <select
             id="video-input-select"
-            class="select select-sm select-bordered"
+            class="select select-sm select-bordered {getSelectClass(config.VideoInput)}"
             bind:value={config.VideoInput}
           >
             <option value="Default">Default</option>
@@ -218,7 +224,7 @@
           </label>
           <select
             id="printer-redirection-select"
-            class="select select-sm select-bordered"
+            class="select select-sm select-bordered {getSelectClass(config.PrinterRedirection)}"
             bind:value={config.PrinterRedirection}
           >
             <option value="Default">Default</option>
@@ -241,7 +247,7 @@
           </label>
           <select
             id="clipboard-redirection-select"
-            class="select select-sm select-bordered"
+            class="select select-sm select-bordered {getSelectClass(config.ClipboardRedirection)}"
             bind:value={config.ClipboardRedirection}
           >
             <option value="Default">Default</option>
@@ -261,7 +267,7 @@
           </label>
           <select
             id="protected-client-select"
-            class="select select-sm select-bordered"
+            class="select select-sm select-bordered {getSelectClass(config.ProtectedClient)}"
             bind:value={config.ProtectedClient}
           >
             <option value="Default">Default</option>
