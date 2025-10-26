@@ -4,7 +4,8 @@ import { electronAPI } from '@electron-toolkit/preload'
 // Custom APIs for renderer
 const api = {
   loadWsb: () => ipcRenderer.invoke('load-wsb'),
-  saveWsb: (content: string, filePath?: string) => ipcRenderer.invoke('save-wsb', content, filePath),
+  saveWsb: (content: string, filePath?: string) =>
+    ipcRenderer.invoke('save-wsb', content, filePath),
   saveWsbAs: (content: string) => ipcRenderer.invoke('save-wsb-as', content),
   onMenuNew: (callback: () => void) => ipcRenderer.on('menu-new', callback),
   onMenuOpen: (callback: () => void) => ipcRenderer.on('menu-open', callback),

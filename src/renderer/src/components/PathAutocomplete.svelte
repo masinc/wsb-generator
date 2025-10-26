@@ -23,10 +23,7 @@
 
   async function searchDirectories(path: string): Promise<void> {
     try {
-      const results = await window.api.searchDirectories(
-        path,
-        currentFilePath ?? undefined
-      )
+      const results = await window.api.searchDirectories(path, currentFilePath ?? undefined)
       suggestions = results
       showSuggestions = results.length > 0
       selectedIndex = -1

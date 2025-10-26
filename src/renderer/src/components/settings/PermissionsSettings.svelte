@@ -100,7 +100,9 @@
         </label>
         <select
           id="printer-redirection-select"
-          class="select select-sm select-bordered {getPrinterRedirectionSelectClass(config.PrinterRedirection)}"
+          class="select select-sm select-bordered {getPrinterRedirectionSelectClass(
+            config.PrinterRedirection
+          )}"
           bind:value={config.PrinterRedirection}
         >
           <option value="Default">Default</option>
@@ -113,14 +115,19 @@
         <label class="label py-1" for="clipboard-redirection-select">
           <span class="label-text text-sm flex items-center gap-1">
             Clipboard
-            <span class="tooltip" data-tip="Share clipboard between host and sandbox.&#10;Default: Enable">
+            <span
+              class="tooltip"
+              data-tip="Share clipboard between host and sandbox.&#10;Default: Enable"
+            >
               <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>
         </label>
         <select
           id="clipboard-redirection-select"
-          class="select select-sm select-bordered {getClipboardRedirectionSelectClass(config.ClipboardRedirection)}"
+          class="select select-sm select-bordered {getClipboardRedirectionSelectClass(
+            config.ClipboardRedirection
+          )}"
           bind:value={config.ClipboardRedirection}
         >
           <option value="Default">Default</option>
@@ -143,7 +150,9 @@
         </label>
         <select
           id="protected-client-select"
-          class="select select-sm select-bordered {getProtectedClientSelectClass(config.ProtectedClient)}"
+          class="select select-sm select-bordered {getProtectedClientSelectClass(
+            config.ProtectedClient
+          )}"
           bind:value={config.ProtectedClient}
         >
           <option value="Default">Default</option>
