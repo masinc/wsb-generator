@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { WsbConfiguration } from '@jsr/masinc__wsb'
-  import { HelpCircle } from 'lucide-svelte'
+  import { CircleQuestionMark } from 'lucide-svelte'
 
   interface Props {
     config: WsbConfiguration
@@ -72,7 +72,7 @@
                     class="tooltip"
                     data-tip="Path to folder on host machine.&#10;Example: C:\MyFolder"
                   >
-                    <HelpCircle size={16} class="opacity-60" />
+                    <CircleQuestionMark size={16} class="opacity-60" />
                   </span>
                 </span>
               </label>
@@ -101,7 +101,7 @@
                     class="tooltip"
                     data-tip="Path inside sandbox (optional).&#10;If empty, uses Desktop."
                   >
-                    <HelpCircle size={16} class="opacity-60" />
+                    <CircleQuestionMark size={16} class="opacity-60" />
                   </span>
                 </span>
               </label>
@@ -122,7 +122,7 @@
                     class="tooltip"
                     data-tip="Prevent modifications to host folder.&#10;Sandbox can only read files."
                   >
-                    <HelpCircle size={16} class="opacity-60" />
+                    <CircleQuestionMark size={16} class="opacity-60" />
                   </span>
                 </span>
                 <input

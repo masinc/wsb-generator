@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { WsbConfiguration } from '@jsr/masinc__wsb'
-  import { HelpCircle } from 'lucide-svelte'
+  import { CircleQuestionMark } from 'lucide-svelte'
 
   interface Props {
     config: WsbConfiguration
@@ -36,7 +36,7 @@
           <span class="label-text text-sm flex items-center gap-1">
             VGpu
             <span class="tooltip" data-tip="GPU virtualization.&#10;Default: Enable if supported">
-              <HelpCircle size={16} class="opacity-60" />
+              <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>
         </label>
@@ -56,7 +56,7 @@
           <span class="label-text text-sm flex items-center gap-1">
             Networking
             <span class="tooltip" data-tip="Network access.&#10;Default: Disable">
-              <HelpCircle size={16} class="opacity-60" />
+              <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>
         </label>
@@ -79,7 +79,7 @@
               class="tooltip"
               data-tip="Memory allocation in megabytes.&#10;Default: 50% of host memory"
             >
-              <HelpCircle size={16} class="opacity-60" />
+              <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>
         </label>

@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { WsbConfiguration } from '@jsr/masinc__wsb'
-  import { HelpCircle } from 'lucide-svelte'
+  import { CircleQuestionMark } from 'lucide-svelte'
 
   interface Props {
     config: WsbConfiguration
@@ -25,7 +25,7 @@
           <span class="label-text text-sm flex items-center gap-1">
             Audio Input
             <span class="tooltip" data-tip="Microphone access.&#10;Default: Disable">
-              <HelpCircle size={16} class="opacity-60" />
+              <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>
         </label>
@@ -45,7 +45,7 @@
           <span class="label-text text-sm flex items-center gap-1">
             Video Input
             <span class="tooltip" data-tip="Webcam access.&#10;Default: Disable">
-              <HelpCircle size={16} class="opacity-60" />
+              <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>
         </label>
@@ -68,7 +68,7 @@
               class="tooltip"
               data-tip="Share host printers with sandbox.&#10;Default: Disable"
             >
-              <HelpCircle size={16} class="opacity-60" />
+              <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>
         </label>
@@ -91,7 +91,7 @@
               class="tooltip"
               data-tip="Share clipboard between host and sandbox.&#10;Default: Disable"
             >
-              <HelpCircle size={16} class="opacity-60" />
+              <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>
         </label>
@@ -111,7 +111,7 @@
           <span class="label-text text-sm flex items-center gap-1">
             Protected Client
             <span class="tooltip" data-tip="Enhanced security mode.&#10;Default: Disable">
-              <HelpCircle size={16} class="opacity-60" />
+              <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>
         </label>

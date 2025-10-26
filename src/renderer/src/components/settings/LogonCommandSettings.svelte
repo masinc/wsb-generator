@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { WsbConfiguration } from '@jsr/masinc__wsb'
-  import { HelpCircle } from 'lucide-svelte'
+  import { CircleQuestionMark } from 'lucide-svelte'
 
   interface Props {
     config: WsbConfiguration
@@ -21,7 +21,7 @@
             class="tooltip"
             data-tip="Command to run when sandbox starts.&#10;Example: cmd.exe /c start notepad.exe"
           >
-            <HelpCircle size={16} class="opacity-60" />
+            <CircleQuestionMark size={16} class="opacity-60" />
           </span>
         </span>
       </label>
