@@ -79,7 +79,7 @@
                   Host Folder
                   <span
                     class="tooltip"
-                    data-tip="Path to folder on host machine.&#10;Example: C:\MyFolder"
+                    data-tip="Folder on host machine to share into sandbox.&#10;The folder must already exist."
                   >
                     <CircleQuestionMark size={16} class="opacity-60" />
                   </span>
@@ -104,7 +104,7 @@
                   Sandbox Folder (Optional)
                   <span
                     class="tooltip"
-                    data-tip="Path inside sandbox (optional).&#10;If empty, uses Desktop."
+                    data-tip="Destination in sandbox to map the folder to.&#10;If folder doesn't exist, it will be created."
                   >
                     <CircleQuestionMark size={16} class="opacity-60" />
                   </span>
@@ -125,7 +125,7 @@
                   Read Only
                   <span
                     class="tooltip"
-                    data-tip="Prevent modifications to host folder.&#10;Sandbox can only read files."
+                    data-tip="Enforces read-only access to the shared folder.&#10;Default: false"
                   >
                     <CircleQuestionMark size={16} class="opacity-60" />
                   </span>

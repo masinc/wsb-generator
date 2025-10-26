@@ -24,7 +24,7 @@
         <label class="label py-1" for="audio-input-select">
           <span class="label-text text-sm flex items-center gap-1">
             Audio Input
-            <span class="tooltip" data-tip="Microphone access.&#10;Default: Disable">
+            <span class="tooltip" data-tip="Microphone access.&#10;Default: Enable">
               <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>
@@ -64,7 +64,7 @@
         <label class="label py-1" for="printer-redirection-select">
           <span class="label-text text-sm flex items-center gap-1">
             Printer
-            <span class="tooltip" data-tip="Share host printers with sandbox.&#10;Default: Disable">
+            <span class="tooltip" data-tip="Share host printers with sandbox.">
               <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>
@@ -86,7 +86,7 @@
             Clipboard
             <span
               class="tooltip"
-              data-tip="Share clipboard between host and sandbox.&#10;Default: Disable"
+              data-tip="Share clipboard between host and sandbox."
             >
               <CircleQuestionMark size={16} class="opacity-60" />
             </span>
@@ -107,7 +107,10 @@
         <label class="label py-1" for="protected-client-select">
           <span class="label-text text-sm flex items-center gap-1">
             Protected Client
-            <span class="tooltip" data-tip="Enhanced security mode.&#10;Default: Disable">
+            <span
+              class="tooltip"
+              data-tip="Runs sandbox inside an AppContainer Isolation execution environment for enhanced security."
+            >
               <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>
