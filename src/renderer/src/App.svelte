@@ -149,7 +149,7 @@
 </script>
 
 <div class="container mx-auto p-4 max-w-2xl">
-  <SettingsForm bind:config />
+  <SettingsForm bind:config {currentFilePath} />
 </div>
 
 <NotificationToast

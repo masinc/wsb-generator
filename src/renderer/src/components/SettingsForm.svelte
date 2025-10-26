@@ -7,14 +7,15 @@
 
   interface Props {
     config: WsbConfiguration
+    currentFilePath: string | null
   }
 
-  let { config = $bindable() }: Props = $props()
+  let { config = $bindable(), currentFilePath }: Props = $props()
 </script>
 
 <div class="space-y-3">
   <BasicSettings bind:config />
   <PermissionsSettings bind:config />
-  <MappedFoldersSettings bind:config />
+  <MappedFoldersSettings bind:config {currentFilePath} />
   <LogonCommandSettings bind:config />
 </div>

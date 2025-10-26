@@ -9,7 +9,7 @@ interface WsbApi {
   onMenuSave: (callback: () => void) => void
   onMenuSaveAs: (callback: () => void) => void
   setTitle: (title: string) => void
-  selectFolder: () => Promise<string | null>
+  selectFolder: (defaultPath?: string) => Promise<string | null>
 }
 
 declare global {

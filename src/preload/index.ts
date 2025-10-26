@@ -11,7 +11,7 @@ const api = {
   onMenuSave: (callback: () => void) => ipcRenderer.on('menu-save', callback),
   onMenuSaveAs: (callback: () => void) => ipcRenderer.on('menu-save-as', callback),
   setTitle: (title: string) => ipcRenderer.send('set-title', title),
-  selectFolder: () => ipcRenderer.invoke('select-folder')
+  selectFolder: (defaultPath?: string) => ipcRenderer.invoke('select-folder', defaultPath)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

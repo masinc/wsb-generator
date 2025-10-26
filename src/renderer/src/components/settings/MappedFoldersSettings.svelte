@@ -4,9 +4,10 @@
 
   interface Props {
     config: WsbConfiguration
+    currentFilePath: string | null
   }
 
-  let { config = $bindable() }: Props = $props()
+  let { config = $bindable(), currentFilePath }: Props = $props()
 
   function addMappedFolder(): void {
     const folders = Array.isArray(config.MappedFolders?.MappedFolder)
@@ -32,8 +33,15 @@
     }
   }
 
+  function getDirname(filePath: string): string {
+    const normalized = filePath.replace(/\\/g, '/')
+    const lastSlash = normalized.lastIndexOf('/')
+    return lastSlash > 0 ? filePath.substring(0, lastSlash) : filePath
+  }
+
   async function selectHostFolder(index: number): Promise<void> {
-    const folderPath = await window.api.selectFolder()
+    const defaultPath = currentFilePath ? getDirname(currentFilePath) : undefined
+    const folderPath = await window.api.selectFolder(defaultPath)
     if (folderPath) {
       const folders = Array.isArray(config.MappedFolders?.MappedFolder)
         ? config.MappedFolders.MappedFolder

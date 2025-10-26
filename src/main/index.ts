@@ -159,9 +159,10 @@ app.whenReady().then(() => {
     }
   })
 
-  ipcMain.handle('select-folder', async () => {
+  ipcMain.handle('select-folder', async (_event, defaultPath?: string) => {
     const result = await dialog.showOpenDialog({
-      properties: ['openDirectory']
+      properties: ['openDirectory'],
+      defaultPath: defaultPath
     })
 
     if (result.canceled || result.filePaths.length === 0) {
