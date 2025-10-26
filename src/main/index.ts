@@ -1,5 +1,5 @@
 import { app, shell, BrowserWindow, ipcMain, dialog, Menu } from 'electron'
-import { join, dirname, sep } from 'path'
+import { join, dirname } from 'path'
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from 'fs'
 import { execSync } from 'child_process'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
