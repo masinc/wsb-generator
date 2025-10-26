@@ -19,8 +19,14 @@
     }
   })
 
-  function getSelectClass(value: string | undefined): string {
-    if (value === 'Enable') return 'select-success'
+  function getVGpuSelectClass(value: string | undefined): string {
+    if (value === 'Enable' || value === 'Default') return 'select-success'
+    if (value === 'Disable') return 'select-error'
+    return ''
+  }
+
+  function getNetworkingSelectClass(value: string | undefined): string {
+    if (value === 'Enable' || value === 'Default') return 'select-success'
     if (value === 'Disable') return 'select-error'
     return ''
   }
@@ -42,7 +48,7 @@
         </label>
         <select
           id="vgpu-select"
-          class="select select-sm select-bordered {getSelectClass(config.VGpu)}"
+          class="select select-sm select-bordered {getVGpuSelectClass(config.VGpu)}"
           bind:value={config.VGpu}
         >
           <option value="Default">Default</option>
@@ -62,7 +68,7 @@
         </label>
         <select
           id="networking-select"
-          class="select select-sm select-bordered {getSelectClass(config.Networking)}"
+          class="select select-sm select-bordered {getNetworkingSelectClass(config.Networking)}"
           bind:value={config.Networking}
         >
           <option value="Default">Default</option>
