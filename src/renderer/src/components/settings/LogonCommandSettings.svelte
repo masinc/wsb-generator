@@ -19,7 +19,7 @@
           Command to execute on startup
           <span
             class="tooltip"
-            data-tip="A single command invoked automatically after sandbox logs on.&#10;Example: cmd.exe /c start notepad.exe"
+            data-tip="A single command invoked automatically after sandbox logs on.;Example: cmd.exe /c start notepad.exe"
           >
             <CircleQuestionMark size={16} class="opacity-60" />
           </span>

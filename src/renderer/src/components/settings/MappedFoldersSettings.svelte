@@ -79,7 +79,7 @@
                   Host Folder
                   <span
                     class="tooltip"
-                    data-tip="Folder on host machine to share into sandbox.&#10;The folder must already exist."
+                    data-tip="Folder on host machine to share into sandbox.;The folder must already exist."
                   >
                     <CircleQuestionMark size={16} class="opacity-60" />
                   </span>
@@ -90,7 +90,7 @@
                   id="host-folder-{index}"
                   bind:value={folder.HostFolder}
                   placeholder="Type or select folder..."
-                  currentFilePath={currentFilePath}
+                  {currentFilePath}
                 />
                 <button class="btn btn-sm btn-outline" onclick={() => selectHostFolder(index)}>
                   Browse
@@ -104,7 +104,7 @@
                   Sandbox Folder (Optional)
                   <span
                     class="tooltip"
-                    data-tip="Destination in sandbox to map the folder to.&#10;If folder doesn't exist, it will be created."
+                    data-tip="Destination in sandbox to map the folder to.;If folder doesn't exist, it will be created."
                   >
                     <CircleQuestionMark size={16} class="opacity-60" />
                   </span>
@@ -125,7 +125,7 @@
                   Read Only
                   <span
                     class="tooltip"
-                    data-tip="Enforces read-only access to the shared folder.&#10;Default: false"
+                    data-tip="Enforces read-only access to the shared folder.;Default: false"
                   >
                     <CircleQuestionMark size={16} class="opacity-60" />
                   </span>
