@@ -64,10 +64,7 @@
         <label class="label py-1" for="printer-redirection-select">
           <span class="label-text text-sm flex items-center gap-1">
             Printer
-            <span
-              class="tooltip"
-              data-tip="Share host printers with sandbox.&#10;Default: Disable"
-            >
+            <span class="tooltip" data-tip="Share host printers with sandbox.&#10;Default: Disable">
               <CircleQuestionMark size={16} class="opacity-60" />
             </span>
           </span>

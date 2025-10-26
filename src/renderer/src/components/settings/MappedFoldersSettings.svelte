@@ -92,10 +92,7 @@
                   bind:value={folder.HostFolder}
                   placeholder="Select folder..."
                 />
-                <button
-                  class="btn btn-sm btn-outline"
-                  onclick={() => selectHostFolder(index)}
-                >
+                <button class="btn btn-sm btn-outline" onclick={() => selectHostFolder(index)}>
                   Browse
                 </button>
               </div>
