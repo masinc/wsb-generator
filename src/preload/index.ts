@@ -1,9 +1,18 @@
-import { contextBridge, ipcRenderer } from 'electron'
+import { contextBridge, ipcRenderer, webUtils } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
 // Custom APIs for renderer
 const api = {
   loadWsb: () => ipcRenderer.invoke('load-wsb'),
+  loadWsbFromPath: (filePath: string) => ipcRenderer.invoke('load-wsb-from-path', filePath),
+  getFilePath: (file: File) => {
+    try {
+      return Promise.resolve(webUtils.getPathForFile(file))
+    } catch (error) {
+      console.error('Failed to get file path:', error)
+      return Promise.resolve(null)
+    }
+  },
   saveWsb: (content: string, filePath?: string) =>
     ipcRenderer.invoke('save-wsb', content, filePath),
   saveWsbAs: (content: string) => ipcRenderer.invoke('save-wsb-as', content),

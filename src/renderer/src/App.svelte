@@ -43,6 +43,62 @@
     saveConfigAs()
   })
 
+  // Drag and drop handlers
+  function handleDragOver(event: DragEvent): void {
+    event.preventDefault()
+    if (event.dataTransfer) {
+      event.dataTransfer.dropEffect = 'copy'
+    }
+  }
+
+  async function handleDrop(event: DragEvent): Promise<void> {
+    event.preventDefault()
+    if (event.dataTransfer?.files.length) {
+      const file = event.dataTransfer.files[0]
+      if (file.name.toLowerCase().endsWith('.wsb')) {
+        try {
+          const filePath = await window.api.getFilePath(file)
+          if (filePath) {
+            await loadConfigFromPath(filePath)
+          } else {
+            errorMessage = 'Unable to get file path'
+          }
+        } catch (error) {
+          errorMessage = `Failed to get file path: ${error instanceof Error ? error.message : String(error)}`
+        }
+      } else {
+        errorMessage = 'Please drop a .wsb file'
+      }
+    }
+  }
+
+  async function loadConfigFromPath(filePath: string): Promise<void> {
+    errorMessage = null
+    successMessage = null
+    try {
+      const content = await window.api.loadWsbFromPath(filePath)
+      if (content) {
+        const parsed = parse(content)
+        config = {
+          VGpu: parsed.Configuration.VGpu || 'Default',
+          Networking: parsed.Configuration.Networking || 'Default',
+          AudioInput: parsed.Configuration.AudioInput || 'Default',
+          VideoInput: parsed.Configuration.VideoInput || 'Default',
+          ProtectedClient: parsed.Configuration.ProtectedClient || 'Default',
+          PrinterRedirection: parsed.Configuration.PrinterRedirection || 'Default',
+          ClipboardRedirection: parsed.Configuration.ClipboardRedirection || 'Default',
+          MemoryInMB: parsed.Configuration.MemoryInMB,
+          MappedFolders: parsed.Configuration.MappedFolders || { MappedFolder: [] },
+          LogonCommand: parsed.Configuration.LogonCommand || { Command: '' }
+        }
+        currentFilePath = filePath
+        successMessage = `Loaded: ${filePath}`
+      }
+    } catch (error) {
+      errorMessage = `Failed to load WSB file: ${error instanceof Error ? error.message : String(error)}`
+    }
+  }
+
   function newConfig(): void {
     config = {
       VGpu: 'Default',
@@ -148,7 +204,12 @@
   }
 </script>
 
-<div class="container mx-auto p-4 max-w-2xl">
+<div
+  class="container mx-auto p-4 max-w-2xl"
+  role="application"
+  ondragover={handleDragOver}
+  ondrop={handleDrop}
+>
   <SettingsForm bind:config {currentFilePath} />
 </div>
 

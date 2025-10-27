@@ -123,6 +123,16 @@ app.whenReady().then(() => {
     return { filePath, content }
   })
 
+  ipcMain.handle('load-wsb-from-path', async (_event, filePath: string) => {
+    try {
+      const content = readFileSync(filePath, 'utf-8')
+      return content
+    } catch (error) {
+      console.error('Failed to load WSB file:', error)
+      return null
+    }
+  })
+
   ipcMain.handle('save-wsb', async (_event, content: string, filePath?: string) => {
     let targetPath = filePath
 
