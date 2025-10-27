@@ -16,6 +16,9 @@ const api = {
   saveWsb: (content: string, filePath?: string) =>
     ipcRenderer.invoke('save-wsb', content, filePath),
   saveWsbAs: (content: string) => ipcRenderer.invoke('save-wsb-as', content),
+  showConfirmDialog: (message: string) => ipcRenderer.invoke('show-confirm-dialog', message),
+  onBeforeClose: (callback: () => void) => ipcRenderer.on('before-close', callback),
+  confirmClose: (canClose: boolean) => ipcRenderer.send('close-confirmed', canClose),
   onMenuNew: (callback: () => void) => ipcRenderer.on('menu-new', callback),
   onMenuOpen: (callback: () => void) => ipcRenderer.on('menu-open', callback),
   onMenuSave: (callback: () => void) => ipcRenderer.on('menu-save', callback),

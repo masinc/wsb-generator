@@ -19,20 +19,51 @@
   let currentFilePath = $state<string | null>(null)
   let errorMessage = $state<string | null>(null)
   let successMessage = $state<string | null>(null)
+  let isModified = $state<boolean>(false)
+  let savedConfig = $state<string>('')
 
-  // Update window title when file path changes
+  // Update window title when file path or modified state changes
   $effect(() => {
-    const title = currentFilePath ? `${currentFilePath} - WSB Configuration` : 'WSB Configuration'
+    const fileName = currentFilePath || 'Untitled'
+    const modifiedIndicator = isModified ? '*' : ''
+    const title = `${modifiedIndicator}${fileName} - WSB Configuration`
     window.api.setTitle(title)
   })
 
-  // Setup menu handlers
-  window.api.onMenuNew(() => {
-    newConfig()
+  // Track changes to config
+  $effect(() => {
+    const currentConfigStr = JSON.stringify(config)
+    // Skip initial state
+    if (savedConfig !== '') {
+      isModified = currentConfigStr !== savedConfig
+    }
   })
 
-  window.api.onMenuOpen(() => {
-    loadConfig()
+  // Confirm unsaved changes
+  async function confirmUnsavedChanges(): Promise<boolean> {
+    if (!isModified) return true
+
+    const confirmed = await window.api.showConfirmDialog('Do you want to discard unsaved changes?')
+    return confirmed
+  }
+
+  // Setup close handler
+  window.api.onBeforeClose(async () => {
+    const canClose = await confirmUnsavedChanges()
+    window.api.confirmClose(canClose)
+  })
+
+  // Setup menu handlers
+  window.api.onMenuNew(async () => {
+    if (await confirmUnsavedChanges()) {
+      newConfig()
+    }
+  })
+
+  window.api.onMenuOpen(async () => {
+    if (await confirmUnsavedChanges()) {
+      loadConfig()
+    }
   })
 
   window.api.onMenuSave(() => {
@@ -56,6 +87,9 @@
     if (event.dataTransfer?.files.length) {
       const file = event.dataTransfer.files[0]
       if (file.name.toLowerCase().endsWith('.wsb')) {
+        if (!(await confirmUnsavedChanges())) {
+          return
+        }
         try {
           const filePath = await window.api.getFilePath(file)
           if (filePath) {
@@ -93,6 +127,8 @@
         }
         currentFilePath = filePath
         successMessage = `Loaded: ${filePath}`
+        savedConfig = JSON.stringify(config)
+        isModified = false
       }
     } catch (error) {
       errorMessage = `Failed to load WSB file: ${error instanceof Error ? error.message : String(error)}`
@@ -114,6 +150,8 @@
     currentFilePath = null
     errorMessage = null
     successMessage = null
+    savedConfig = JSON.stringify(config)
+    isModified = false
   }
 
   async function loadConfig(): Promise<void> {
@@ -138,6 +176,8 @@
         }
         currentFilePath = result.filePath
         successMessage = `Loaded: ${result.filePath}`
+        savedConfig = JSON.stringify(config)
+        isModified = false
       } catch (error) {
         errorMessage = `Failed to parse WSB file: ${error instanceof Error ? error.message : String(error)}`
       }
@@ -182,6 +222,8 @@
       if (savedPath) {
         currentFilePath = savedPath
         successMessage = `Saved to: ${savedPath}`
+        savedConfig = JSON.stringify(config)
+        isModified = false
       }
     } catch (error) {
       errorMessage = `Failed to save WSB configuration: ${error instanceof Error ? error.message : String(error)}`
@@ -197,6 +239,8 @@
       if (savedPath) {
         currentFilePath = savedPath
         successMessage = `Saved to: ${savedPath}`
+        savedConfig = JSON.stringify(config)
+        isModified = false
       }
     } catch (error) {
       errorMessage = `Failed to save WSB configuration: ${error instanceof Error ? error.message : String(error)}`

@@ -27,6 +27,11 @@ function createWindow(): BrowserWindow {
     }
   })
 
+  mainWindow.on('close', (event) => {
+    event.preventDefault()
+    mainWindow.webContents.send('before-close')
+  })
+
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
     return { action: 'deny' }
@@ -107,6 +112,16 @@ app.whenReady().then(() => {
   // IPC test
   ipcMain.on('ping', () => console.log('pong'))
 
+  // Handle close confirmation response
+  ipcMain.on('close-confirmed', (_event, canClose: boolean) => {
+    if (canClose) {
+      const window = BrowserWindow.fromWebContents(_event.sender)
+      if (window) {
+        window.destroy()
+      }
+    }
+  })
+
   // WSB file handlers
   ipcMain.handle('load-wsb', async () => {
     const result = await dialog.showOpenDialog({
@@ -131,6 +146,22 @@ app.whenReady().then(() => {
       console.error('Failed to load WSB file:', error)
       return null
     }
+  })
+
+  ipcMain.handle('show-confirm-dialog', async (_event, message: string) => {
+    const window = BrowserWindow.fromWebContents(_event.sender)
+    if (!window) return false
+
+    const result = await dialog.showMessageBox(window, {
+      type: 'question',
+      buttons: ['Cancel', 'OK'],
+      defaultId: 1,
+      cancelId: 0,
+      message: message,
+      detail: 'Your changes will be lost if you do not save them.'
+    })
+
+    return result.response === 1
   })
 
   ipcMain.handle('save-wsb', async (_event, content: string, filePath?: string) => {
