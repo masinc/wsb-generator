@@ -83,6 +83,7 @@ This project uses GitHub Actions to automatically build and release the applicat
 ### Release Process
 
 1. **Update Version**
+
    ```bash
    # Update version in package.json
    pnpm version <major|minor|patch>
@@ -90,6 +91,7 @@ This project uses GitHub Actions to automatically build and release the applicat
    ```
 
 2. **Push Tag to GitHub**
+
    ```bash
    # Push the version commit and tag
    git push && git push --tags
@@ -109,6 +111,7 @@ This project uses GitHub Actions to automatically build and release the applicat
 ### Release Workflow Details
 
 The [release.yml](.github/workflows/release.yml) workflow:
+
 - Triggers on: Git tags matching `v*.*.*` pattern
 - Platform: Windows only (WSB is Windows-specific)
 - Artifacts: Builds `.exe` installer and related files

@@ -33,7 +33,7 @@ Windows Sandbox settings without manually editing XML files.
 
 ### Libraries
 
-- **@jsr/masinc__wsb**: 0.1.0 - WSB file parsing and serialization
+- **@jsr/masinc\_\_wsb**: 0.1.0 - WSB file parsing and serialization
 - **lucide-svelte**: ^0.548.0 - Icon library
 
 ## Project Structure
