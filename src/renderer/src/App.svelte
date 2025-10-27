@@ -20,7 +20,7 @@
   let errorMessage = $state<string | null>(null)
   let successMessage = $state<string | null>(null)
   let isModified = $state<boolean>(false)
-  let savedConfig = $state<string>('')
+  let savedConfig = $state<string>(JSON.stringify(config))
 
   // Update window title when file path or modified state changes
   $effect(() => {
@@ -33,10 +33,7 @@
   // Track changes to config
   $effect(() => {
     const currentConfigStr = JSON.stringify(config)
-    // Skip initial state
-    if (savedConfig !== '') {
-      isModified = currentConfigStr !== savedConfig
-    }
+    isModified = currentConfigStr !== savedConfig
   })
 
   // Confirm unsaved changes
