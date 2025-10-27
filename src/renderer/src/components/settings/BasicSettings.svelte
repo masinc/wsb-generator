@@ -11,6 +11,12 @@
   let useCustomMemory = $state(config.MemoryInMB !== undefined)
   let memoryValue = $state(config.MemoryInMB || 4096)
 
+  // Sync local state when config changes
+  $effect(() => {
+    useCustomMemory = config.MemoryInMB !== undefined
+    memoryValue = config.MemoryInMB || 4096
+  })
+
   $effect(() => {
     if (useCustomMemory) {
       config.MemoryInMB = memoryValue
