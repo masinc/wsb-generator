@@ -2,6 +2,7 @@
   "name": "wsb-generator",
   "version": "0.2.0",
   "description": "An Electron application with Svelte and TypeScript",
+  "type": "module",
   "main": "./out/main/index.js",
   "author": "example.com",
   "homepage": "https://electron-vite.org",
@@ -25,6 +26,7 @@
     "@electron-toolkit/utils": "^4.0.0",
     "@jsr/masinc__wsb": "0.1.0",
     "@tailwindcss/vite": "^4.1.15",
+    "electron-store": "^11.0.2",
     "electron-updater": "^6.3.9",
     "lucide-svelte": "^0.548.0",
     "tailwindcss": "^4.1.15"

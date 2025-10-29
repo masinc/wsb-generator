@@ -1,5 +1,7 @@
 import { ElectronAPI } from '@electron-toolkit/preload'
 
+type Theme = 'light' | 'dark' | 'system'
+
 interface WsbApi {
   loadWsb: () => Promise<{ filePath: string; content: string } | null>
   loadWsbFromPath: (filePath: string) => Promise<string | null>
@@ -16,6 +18,9 @@ interface WsbApi {
   setTitle: (title: string) => void
   selectFolder: (defaultPath?: string) => Promise<string | null>
   searchDirectories: (inputPath: string, currentFilePath?: string) => Promise<string[]>
+  getTheme: () => Promise<Theme>
+  setTheme: (theme: Theme) => Promise<void>
+  onMenuThemeChange: (callback: (theme: Theme) => void) => void
 }
 
 declare global {

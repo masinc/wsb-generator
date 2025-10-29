@@ -1,7 +1,12 @@
 import { BrowserWindow, shell } from 'electron'
-import { join } from 'path'
+import { join, dirname } from 'path'
+import { fileURLToPath } from 'url'
 import { is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+
+// ESM compatibility: __dirname is not available in ES modules
+const _filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(_filename)
 
 export function createWindow(): BrowserWindow {
   // Create the browser window.
@@ -12,7 +17,7 @@ export function createWindow(): BrowserWindow {
     autoHideMenuBar: false,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
-      preload: join(__dirname, '../preload/index.js'),
+      preload: join(__dirname, '../preload/index.mjs'),
       sandbox: false
     }
   })

@@ -4,6 +4,7 @@ import { createWindow } from './window'
 import { createApplicationMenu } from './menu'
 import { registerFileHandlers } from './ipc/fileHandlers'
 import { registerDialogHandlers } from './ipc/dialogHandlers'
+import { registerThemeHandlers } from './ipc/themeHandlers'
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -22,6 +23,7 @@ app.whenReady().then(() => {
   // Register IPC handlers
   registerFileHandlers()
   registerDialogHandlers()
+  registerThemeHandlers()
 
   // Create main window and menu
   const mainWindow = createWindow()

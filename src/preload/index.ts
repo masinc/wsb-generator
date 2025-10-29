@@ -26,7 +26,11 @@ const api = {
   setTitle: (title: string) => ipcRenderer.send('set-title', title),
   selectFolder: (defaultPath?: string) => ipcRenderer.invoke('select-folder', defaultPath),
   searchDirectories: (inputPath: string, currentFilePath?: string) =>
-    ipcRenderer.invoke('search-directories', inputPath, currentFilePath)
+    ipcRenderer.invoke('search-directories', inputPath, currentFilePath),
+  getTheme: () => ipcRenderer.invoke('get-theme'),
+  setTheme: (theme: 'light' | 'dark' | 'system') => ipcRenderer.invoke('set-theme', theme),
+  onMenuThemeChange: (callback: (theme: 'light' | 'dark' | 'system') => void) =>
+    ipcRenderer.on('menu-theme-change', (_event, theme) => callback(theme))
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

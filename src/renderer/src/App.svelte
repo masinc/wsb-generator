@@ -2,12 +2,21 @@
   import NotificationToast from './components/NotificationToast.svelte'
   import SettingsForm from './components/SettingsForm.svelte'
   import { documentStore } from './stores/documentStore.svelte'
+  import { themeStore } from './stores/themeStore.svelte'
   import { useFileOperations } from './composables/useFileOperations.svelte'
 
   const fileOps = useFileOperations(documentStore)
 
   // Setup handlers
   fileOps.setupMenuHandlers()
+
+  // Initialize theme
+  themeStore.initialize()
+
+  // Handle theme changes from menu
+  window.api.onMenuThemeChange((theme) => {
+    themeStore.setTheme(theme)
+  })
 
   // Update window title when file path or modified state changes
   $effect(() => {

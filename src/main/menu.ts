@@ -1,6 +1,9 @@
 import { app, BrowserWindow, Menu } from 'electron'
+import { store } from './store'
 
 export function createApplicationMenu(mainWindow: BrowserWindow): Menu {
+  const currentTheme = store.get('theme')
+
   const menu = Menu.buildFromTemplate([
     {
       label: 'File',
@@ -41,6 +44,40 @@ export function createApplicationMenu(mainWindow: BrowserWindow): Menu {
           click: () => {
             app.quit()
           }
+        }
+      ]
+    },
+    {
+      label: 'View',
+      submenu: [
+        {
+          label: 'Theme',
+          submenu: [
+            {
+              label: 'Light',
+              type: 'radio',
+              checked: currentTheme === 'light',
+              click: () => {
+                mainWindow.webContents.send('menu-theme-change', 'light')
+              }
+            },
+            {
+              label: 'Dark',
+              type: 'radio',
+              checked: currentTheme === 'dark',
+              click: () => {
+                mainWindow.webContents.send('menu-theme-change', 'dark')
+              }
+            },
+            {
+              label: 'System',
+              type: 'radio',
+              checked: currentTheme === 'system',
+              click: () => {
+                mainWindow.webContents.send('menu-theme-change', 'system')
+              }
+            }
+          ]
         }
       ]
     }
